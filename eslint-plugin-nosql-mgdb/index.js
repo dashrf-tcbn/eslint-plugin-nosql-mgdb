@@ -22,12 +22,6 @@ let crudCommands = [
     "bulkWrite"
 ];
 
-let insecureFunctions = [
-    "eval",
-    "setTimeOut",
-    "setInterval",
-    "Function",
-]
 
 module.exports.rules = {
     "use-orm": context =>
@@ -81,13 +75,20 @@ module.exports.rules = {
             }
         }
     }),
-    "no-exec": context =>
+    "no-insecure-os-command": context =>
     ({ CallExpression: (node) =>
         {
+            let osCommands = [
+                "exec",
+            ]
+
             // check if is there a exec() in .js file
             if (typeof node.callee !== 'undefined') {
-                if (node.callee.name == "exec") {
-                    context.report(node, "Don't use exec() use execFile() instead");
+                if (osCommands.includes(node.callee.name)) {
+                    if (node.calle.name == 'exec') {
+                        context.report(node, "Don't use exec() use execFile() instead");
+                    }
+                        context.report(node, "Don't use os command function");
                 }
             }
         }
@@ -95,9 +96,16 @@ module.exports.rules = {
     "no-insecure-function": context =>
     ({ CallExpression: (node) =>
         {
+            let insecureFunctions = [
+                "eval",
+                "setTimeOut",
+                "setInterval",
+                "Function",
+            ];
+
             // check if is there a eval() in .js file
             if (typeof node.callee !== 'undefined') {
-                if (insecureFunction.includes(node.callee.name)) {
+                if (insecureFunctions.includes(node.callee.name)) {
                     context.report(node, "Don't use `${node.calle.name}`() it's a inscure function");
                 }
             }

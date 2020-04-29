@@ -20,7 +20,7 @@ module.exports = {
         "nosql-mgdb/use-sanitizer": 2,
         "nosql-mgdb/no-auth-function": 2,
         "nosql-mgdb/no-where": 2,
-        "nosql-mgdb/no-exec": 2,
+        "nosql-mgdb/no-insecure-os-command": 2,
         "nosql-mgdb/no-insecure-function": 2,
     },
 };
