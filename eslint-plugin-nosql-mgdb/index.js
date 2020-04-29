@@ -22,6 +22,13 @@ let crudCommands = [
     "bulkWrite"
 ];
 
+let insecureFunctions = [
+    "eval",
+    "setTimeOut",
+    "setInterval",
+    "Function",
+]
+
 module.exports.rules = {
     "use-orm": context =>
     ({ CallExpression: (node) =>
@@ -85,46 +92,13 @@ module.exports.rules = {
             }
         }
     }),
-    "no-eval": context =>
+    "no-insecure-function": context =>
     ({ CallExpression: (node) =>
         {
             // check if is there a eval() in .js file
             if (typeof node.callee !== 'undefined') {
-                if (node.callee.name == "eval") {
-                    context.report(node, "Don't use eval()");
-                }
-            }
-        }
-    }),
-    "no-settimeout": context =>
-    ({ CallExpression: (node) =>
-        {
-            // check if is there a setTimeout() in .js file
-            if (typeof node.callee !== 'undefined') {
-                if (node.callee.name == "setTimeout") {
-                    context.report(node, "Don't use setTimeout()");
-                }
-            }
-        }
-    }),
-    "no-setinterval": context =>
-    ({ CallExpression: (node) =>
-        {
-            // check if is there a setInterval() in .js file
-            if (typeof node.callee !== 'undefined') {
-                if (node.callee.name == "setInterval") {
-                    context.report(node, "Don't use setInterval()");
-                }
-            }
-        }
-    }),
-    "no-function": context =>
-    ({ CallExpression: (node) =>
-        {
-            // check if is there a Function() in .js file
-            if (typeof node.callee !== 'undefined') {
-                if (node.callee.name == "Function") {
-                    context.report(node, "Don't use Function()");
+                if (insecureFunction.includes(node.callee.name)) {
+                    context.report(node, "Don't use `${node.calle.name}`() it's a inscure function");
                 }
             }
         }

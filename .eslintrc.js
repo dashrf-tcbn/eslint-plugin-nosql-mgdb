@@ -21,9 +21,6 @@ module.exports = {
         "nosql-mgdb/no-auth-function": 2,
         "nosql-mgdb/no-where": 2,
         "nosql-mgdb/no-exec": 2,
-        "nosql-mgdb/no-eval": 2,
-        "nosql-mgdb/no-settimeout": 2,
-        "nosql-mgdb/no-setinterval": 2,
-        "nosql-mgdb/no-function": 2,
+        "nosql-mgdb/no-insecure-function": 2,
     },
 };
