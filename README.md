@@ -1,6 +1,6 @@
 # eslint-plugin-nosql-mgdb
-an eslint plugin to check if there is a vulnerable to injection code in node.js + mongodb .js files
-and my project for cp432 computer security course at Srinakharinwirot University
+is an eslint plugin to check if there is a vulnerable to injection code in node.js + mongodb .js files
+and is my project for cp432 computer security course at Srinakharinwirot University
 
 ## How this plugin works 
 this plugin is designed to mitigate nosql injection attacks by using knownledge about nosql injections from  https://github.com/lirantal/nodejssecurity/blob/master/manuscript/injections.md  
@@ -18,15 +18,15 @@ attackers can exploit this type of injection when a function allows to spawn a s
 ### Eslint rules in this plugin
 this plugin packed with 6 rules. these 6 rules are divided into 4 typed to mitigate the NoSQL injections mentioned aboved.
 1. rules to mitigate NoSQL injections  
-  * nosql-mgdb/use-orm: this rule check if vanialla mongodb is not being used or not
-  * nosql-mgdb/use-satinizer: this rule assert that the mongoDB CRUD commands' input must be a function (either a satinizer function or String())
+   * nosql-mgdb/use-orm: this rule check if vanialla mongodb is not being used or not
+   * nosql-mgdb/use-satinizer: this rule assert that the mongoDB CRUD commands' input must be a function (either a satinizer function or String())
 2. rule to mitigate NoSQL SSJS Injections
-  * nosql-mgdb/no-where: the rule's name say it all doesn't it ?
-  * nosql-mgdb/no-insecure-function: this rule check that if there is a insecure function (such as setTimeOut()) or not 
+   * nosql-mgdb/no-where: the rule's name say it all doesn't it ?
+   * nosql-mgdb/no-insecure-function: this rule check that if there is a insecure function (such as setTimeOut()) or not 
 3. rules to mitigate Blind NoSQL Injections
-  * nosql-mgdb/no-auth-function: this rule checks that if mongoDB CRUD commands' second property is a Identifier node (a function name) or not
+   * nosql-mgdb/no-auth-function: this rule checks that if mongoDB CRUD commands' second property is a Identifier node (a function name) or not
 4. rule to mitigate OS Command Injection
-  * nosql-mgdb/no-insecure-os-command: this rule checks that if there is a insecure os command (such as exec()) or not 
+   * nosql-mgdb/no-insecure-os-command: this rule checks that if there is a insecure os command (such as exec()) or not 
 
 ## Using this plugin
 on your working node.js + mongodb project root directory
@@ -57,7 +57,7 @@ yarn add /path-to-eslint-plugin-nosql-mgdb-folder
 };
 ```
 ### 2. Using
-run
+run this script
 ```
 npx eslint /path-to-your-.js-file
 ```
