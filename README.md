@@ -41,7 +41,7 @@ yarn add eslint
 yarn add /path-to-eslint-plugin-nosql-mgdb-folder
 ```
 4. edit your .eslintconfigrc.js add plugin and rules to it so that eslint can recognize this plugin and its rules
-```
+```json
 {
     "plugins": [
         "nosql-mgdb"
