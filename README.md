@@ -1,6 +1,6 @@
 # eslint-plugin-nosql-mgdb
 is an eslint plugin to check if there is a vulnerable to injection code in node.js + mongodb .js files
-and is my project for cp432 computer security course at Srinakharinwirot University
+and is my course project
 
 ## How this plugin works 
 this plugin is designed to mitigate nosql injection attacks by using knownledge about nosql injections from  https://github.com/lirantal/nodejssecurity/blob/master/manuscript/injections.md  
