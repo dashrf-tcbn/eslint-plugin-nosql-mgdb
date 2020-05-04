@@ -35,17 +35,6 @@ let insecureFunctions = [
 let reqChildNode = false;
 
 module.exports.rules = {
-    "use-orm": context =>
-    ({ CallExpression: (node) =>
-        {
-            // check if it's a something like require('mongodb') or not
-            if (typeof node.callee !== 'undefined' && node.arguments.length != 0)  {
-                if ( node.callee.name == "require" && node.arguments[0].value == 'mongodb' ) {
-                    context.report(node, "Don't use vanilla mongodb, use ORM like sequelizejs or mongoose instead");
-                }
-            }
-        }
-    }),
     "use-sanitizer" : context =>
     ({ CallExpression: (node) =>
         {
@@ -128,5 +117,14 @@ module.exports.rules = {
             }
         }
     ),
+    "use-orm": context =>
+    ({ Literal: (node) =>
+        {
+            // check if it's a something like require('mongodb') or not
+            if (node.value == 'mongodb' ) {
+                context.report(node, "Don't use vanilla mongodb, use ORM like sequelizejs or mongoose instead");
+            }
+        }
+    }),
 }
 
