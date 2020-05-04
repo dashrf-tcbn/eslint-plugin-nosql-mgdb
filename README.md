@@ -61,7 +61,7 @@ run this script
 ```
 npx eslint /path-to-your-.js-file
 ```
-now you can easily check if there is a vulnerable to NoSQL Injections code in your .js file
+now you can easily check if there is a vulnerable to NoSQL Injections code in your .js files
 ![exampleResults](/imgs/exampleResults.png)
 
 ### 3. Modifying
