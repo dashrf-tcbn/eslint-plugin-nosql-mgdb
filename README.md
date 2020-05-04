@@ -66,7 +66,7 @@ now you can easily check if there is a vulnerable to NoSQL Injections code in yo
 
 ### 3. Modifying
 by editing index.js file you can
-* add more mongdb CRUD command to be checked
-* add more insecure function to be checked
-* add more insecure os function to be checked
-* define new rule
+* add more Mongdb CRUD commands to be checked
+* add more insecure functions to be checked
+* add more insecure OS functions to be checked
+* define new rules
