@@ -22,6 +22,17 @@ let crudCommands = [
     "bulkWrite"
 ];
 
+let osCommands = [
+    "exec",
+]
+
+let insecureFunctions = [
+    "eval",
+    "setTimeOut",
+    "setInterval",
+    "Function",
+];
+let reqChildNode = false;
 
 module.exports.rules = {
     "use-orm": context =>
@@ -41,7 +52,7 @@ module.exports.rules = {
             // check if it's a something like db.crudCommands.({username : String(req.body.username}) or not
             if (typeof node.callee !== 'undefined' && node.arguments.length != 0) {
                 if (typeof node.callee.property !== 'undefined') {
-                    if (crudCommands.includes(node.callee.property.name) ) {
+                    if (crudCommands.includes(node.callee.property.name) && typeof node.arguments[0].properties != 'undefined' ) {
                         node.arguments[0].properties.forEach((prop) => {
                             if (!(prop.value.type === 'CallExpression')) {
                                 context.report(node, "mongodb crud arguments properties' value must be sanitized or use String()");
@@ -71,45 +82,51 @@ module.exports.rules = {
         {
             // check if is there a $where in .js file
             if (node.key.name == "$where") {
-                    context.report(node, "Don't use mongodb $where");
+                context.report(node, "Don't use mongodb $where");
             }
         }
     }),
     "no-insecure-os-command": context =>
     ({ CallExpression: (node) =>
         {
-            let osCommands = [
-                "exec",
-            ]
+            if (typeof node.callee !== 'MemberExpression' && node.arguments.length != 0)  {
+                if ( node.callee.name == "require" && node.arguments[0].value == 'child_process' ) {
+                    reqChildNode = true;
 
+                }
+            }
             // check if is there a exec() in .js file
-            if (typeof node.callee !== 'undefined') {
-                if (osCommands.includes(node.callee.name)) {
-                    if (node.calle.name == 'exec') {
-                        context.report(node, "Don't use exec() use execFile() instead");
+            if (typeof node.callee != 'undefined') {
+                if (typeof node.callee.property !== 'undefined') {
+                    if (osCommands.includes(node.callee.property.name)) {
+                        if (node.callee.property.name == 'exec' && reqChildNode) {
+                            context.report(node, "Don't use exec() use execFile() instead");
+                        }
                     }
-                        context.report(node, "Don't use os command function");
                 }
             }
         }
     }),
-    "no-insecure-function": context =>
+    "use-orm": context =>
     ({ CallExpression: (node) =>
         {
-            let insecureFunctions = [
-                "eval",
-                "setTimeOut",
-                "setInterval",
-                "Function",
-            ];
+            // check if it's a something like require('mongodb') or not
+        }
+    }),
 
-            // check if is there a eval() in .js file
-            if (typeof node.callee !== 'undefined') {
-                if (insecureFunctions.includes(node.callee.name)) {
-                    context.report(node, "Don't use `${node.calle.name}`() it's a inscure function");
+    "no-insecure-function": context =>
+    (
+        { CallExpression: (node) =>
+            {
+                let aword = "a";
+                // check if is there a eval() in .js file
+                if (typeof node.callee !== 'Identifier') {
+                    if (insecureFunctions.includes(node.callee.name)) {
+                        context.report(node, "Don't use " + `${node.callee.name}` + "() it's a inscure function");
+                    }
                 }
             }
         }
-    }),
+    ),
 }
 
