@@ -6,14 +6,14 @@ and is my course project
 this plugin is designed to mitigate nosql injection attacks by using knownledge about nosql injections from  https://github.com/lirantal/nodejssecurity/blob/master/manuscript/injections.md
 from that url the nosql injection flaws is breaked down into 4 types
 #### 1. NoSQL Injections
-nosql injections using manipulated inputs
+nosql injections using manipulated inputs  cause of problems: not validate user inputs
 #### 2. NoSQL SSJS Injections
-this type of injection occurs when a server-side component allows the execution of arbitrary JavaScript code in the server context.
+this type of injection occurs when a server-side component allows the execution of arbitrary JavaScript code in the server context.  cause of problems: using $where
 #### 3. Blind NoSQL Injections
 this injection is used when dev mitigate NoSQL Injections by invoking function after first data is qurried (such as invoking function to authen password after username is qurried)
-surely the invoked function is mitigating NoSQL Injuctions but such code still vulnerable to regex inputs
+surely the invoked function is mitigating NoSQL Injuctions but such code still vulnerable to regex inputs  cause of problems:  using username and password that easy to guess
 #### 4. OS Command Injection
-attackers can exploit this type of injection when a function allows to spawn a shell and then execute a given command within that shell context such as ```child_process.exec()``` is being used
+attackers can exploit this type of injection when a function allows to spawn a shell and then execute a given command within that shell context such as ```child_process.exec()``` is being used  cause of problems: using exec() 
 
 ### Eslint rules in this plugin
 this plugin packed with 6 rules. these 6 rules are divided into 4 typed to mitigate the NoSQL injections mentioned aboved.
