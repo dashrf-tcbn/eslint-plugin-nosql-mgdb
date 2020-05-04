@@ -1,23 +1,23 @@
 # eslint-plugin-nosql-mgdb
-is an eslint plugin to check if there is a vulnerable to injection code in node.js + mongodb .js files
+is an eslint plugin to check if there is a vulnerable to Injections code in node.js + mongodb .js files
 and is my course project
 
 ## How this plugin works
-this plugin is designed to mitigate nosql injection attacks by using knownledge about nosql injections from  https://github.com/lirantal/nodejssecurity/blob/master/manuscript/injections.md
-from that url the nosql injection flaws is breaked down into 4 types
+this plugin is designed to mitigate NoSQL Injections attacks by using knownledge about NoSQL Injections from  https://github.com/lirantal/nodejssecurity/blob/master/manuscript/injections.md
+from that url the NoSQL Injections flaws is breaked down into 4 types
 #### 1. NoSQL Injections
-nosql injections using manipulated inputs
+NoSQL Injections using manipulated inputs<br/>cause of problems: not validate user inputs
 #### 2. NoSQL SSJS Injections
-this type of injection occurs when a server-side component allows the execution of arbitrary JavaScript code in the server context.
+this type of Injections occurs when a server-side component allows the execution of arbitrary JavaScript code in the server context.<br/>cause of problems: using $where
 #### 3. Blind NoSQL Injections
-this injection is used when dev mitigate NoSQL Injections by invoking function after first data is qurried (such as invoking function to authen password after username is qurried)
-surely the invoked function is mitigating NoSQL Injuctions but such code still vulnerable to regex inputs
+this Injection is used when dev mitigate NoSQL Injections by invoking function after first data is qurried (such as invoking function to authen password after username is qurried)
+surely the invoked function is mitigating NoSQL Injuctions but such code still vulnerable to regex inputs<br/>cause of problems:  using username and password that easy to guess
 #### 4. OS Command Injection
-attackers can exploit this type of injection when a function allows to spawn a shell and then execute a given command within that shell context such as ```child_process.exec()``` is being used
+attackers can exploit this type of Injection when a function allows to spawn a shell and then execute a given command within that shell context such as ```child_process.exec()``` is being used<br/>cause of problems: using exec()
 
 ### Eslint rules in this plugin
-this plugin packed with 6 rules. these 6 rules are divided into 4 typed to mitigate the NoSQL injections mentioned aboved.
-1. rules to mitigate NoSQL injections
+this plugin packed with 6 rules. these 6 rules are divided into 4 typed to mitigate the NoSQL Injections mentioned aboved.
+1. rules to mitigate NoSQL Injections
     * nosql-mgdb/use-orm  this rule check if vanialla mongodb is not being used or not
     * nosql-mgdb/use-satinizer  this rule assert that the mongoDB CRUD commands' input must be a function (either a satinizer function or String())
 2. rule to mitigate NoSQL SSJS Injections
@@ -40,7 +40,7 @@ yarn add eslint
 ```
 yarn add /path-to-eslint-plugin-nosql-mgdb-folder
 ```
-4. edit your .eslintconfigrc.js by adding plugin and rules to it so that eslint can recognize this plugin and its rules
+4. copy this to your .eslintrc.js by adding plugin and rules to it so that eslint can recognize this plugin and its rules or use .eslintrc.js from this repo
 ```json
 {
     "plugins": [
@@ -61,12 +61,12 @@ run this script
 ```
 npx eslint /path-to-your-.js-file
 ```
-now you can easily check if there is a vulnerable to nosql injection code in your .js file
+now you can easily check if there is a vulnerable to NoSQL Injections code in your .js files
 ![exampleResults](/imgs/exampleResults.png)
 
 ### 3. Modifying
 by editing index.js file you can
-* add more mongdb CRUD command to be checked
-* add more insecure function to be checked
-* add more insecure os function to be checked
-* define new rule
+* add more Mongdb CRUD commands to be checked
+* add more insecure functions to be checked
+* add more insecure OS functions to be checked
+* define new rules
