@@ -16,7 +16,7 @@ surely the invoked function is mitigating NoSQL Injuctions but such code still v
 attackers can exploit this type of Injection when a function allows to spawn a shell and then execute a given command within that shell context such as ```child_process.exec()``` is being used<br/>cause of problems: using exec()
 
 ### Eslint rules in this plugin
-this plugin packed with 6 rules. these 6 rules are divided into 4 typed to mitigate the NoSQL Injections mentioned aboved.
+this plugin packed with 6 rules. these 6 rules are divided into 4 typed to mitigate the NoSQL Injections mentioned above.
 1. rules to mitigate NoSQL Injections
     * nosql-mgdb/use-orm  this rule check if vanialla mongodb is not being used or not
     * nosql-mgdb/use-satinizer  this rule assert that the mongoDB CRUD commands' input must be a function (either a satinizer function or String())
