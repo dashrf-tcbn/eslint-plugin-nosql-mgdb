@@ -20,10 +20,10 @@ this plugin packed with 6 rules. these 6 rules are divided into 4 typed to mitig
 1. rules to mitigate NoSQL Injections
     * nosql-mgdb/use-orm  this rule check if vanialla mongodb is not being used or not
     * nosql-mgdb/use-satinizer  this rule assert that the mongoDB CRUD commands' input must be a function (either a satinizer function or String())
-2. rule to mitigate NoSQL SSJS Injections
+2. rules to mitigate NoSQL SSJS Injections
     * nosql-mgdb/no-where  the rule's name say it all doesn't it ?
     * nosql-mgdb/no-insecure-function  this rule check that if there is a insecure function (such as setTimeOut()) or not
-3. rules to mitigate Blind NoSQL Injections
+3. rule to mitigate Blind NoSQL Injections
     * nosql-mgdb/no-auth-function  this rule checks that if mongoDB CRUD commands' second property is a Identifier node (a function name) or not
 4. rule to mitigate OS Command Injection
     * nosql-mgdb/no-insecure-os-command  this rule checks that if there is a insecure os command (such as exec()) or not
