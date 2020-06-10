@@ -11,7 +11,7 @@ NoSQL Injections using manipulated inputs<br/>cause of problems: not validate us
 this type of Injections occurs when a server-side component allows the execution of arbitrary JavaScript code in the server context.<br/>cause of problems: using $where
 #### 3. Blind NoSQL Injections
 this Injection is used when dev mitigate NoSQL Injections by invoking function after first data is qurried (such as invoking function to authen password after username is qurried)
-surely the invoked function is mitigating NoSQL Injuctions but such code still vulnerable to regex inputs<br/>cause of problems:  using username and password that easy to guess
+surely the invoked function is mitigating NoSQL Injuctions but such code still vulnerable to regex inputs<br/>cause of problems:  using username and password that are easy to guess
 #### 4. OS Command Injection
 attackers can exploit this type of Injection when a function allows to spawn a shell and then execute a given command within that shell context such as ```child_process.exec()``` is being used<br/>cause of problems: using exec()
 
